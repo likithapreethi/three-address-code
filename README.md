@@ -1,52 +1,44 @@
 #include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
 #include<string.h>
-
-struct three
-{
-char data[10],temp[7];
-}s[30];
+void pm();
+void plus();
+void div();
+int i,ch,j,l,addr=100;
+char ex[10], exp[10] ,exp1[10],exp2[10],id1[5],op[5],id2[5];
 void main()
 {
-char d1[7],d2[7]="t";
-int i=0,j=1,len=0;
-FILE *f1,*f2;
 clrscr();
-f1=fopen("sum.txt","r");
-f2=fopen("out.txt","w");
-while(fscanf(f1,"%s",s[len].data)!=EOF)
-len++;
-itoa(j,d1,7);
-strcat(d2,d1);
-strcpy(s[j].temp,d2);
-strcpy(d1,"");
-strcpy(d2,"t");
-if(!strcmp(s[3].data,"+"))
+while(1)
 {
-fprintf(f2,"%s=%s+%s",s[j].temp,s[i+2].data,s[i+4].data);
-j++;
-}
-else if(!strcmp(s[3].data,"-"))
+printf("\n1.assignment\n2.arithmetic\n3.relational\n4.Exit\nEnter the choice:");
+scanf("%d",&ch);
+switch(ch)
 {
-fprintf(f2,"%s=%s-%s",s[j].temp,s[i+2].data,s[i+4].data);
-j++;
-}
-for(i=4;i<len-2;i+=2)
+case 1:
+printf("\nEnter the expression with assignment operator:");
+scanf("%s",exp);
+l=strlen(exp);
+exp2[0]='\0';
+i=0;
+while(exp[i]!='=')
 {
-itoa(j,d1,7);
-strcat(d2,d1);
-strcpy(s[j].temp,d2);
-if(!strcmp(s[i+1].data,"+"))
-fprintf(f2,"\n%s=%s+%s",s[j].temp,s[j-1].temp,s[i+2].data);
-else if(!strcmp(s[i+1].data,"-"))
-fprintf(f2,"\n%s=%s-%s",s[j].temp,s[j-1].temp,s[i+2].data);
-strcpy(d1,"");
-strcpy(d2,"t");
-j++;
+i++;
 }
-fprintf(f2,"\n%s=%s",s[0].data,s[j-1].temp);
-fclose(f1);
-fclose(f2);
-getch();
-}
+strncat(exp2,exp,i);
+strrev(exp);
+exp1[0]='\0';
+strncat(exp1,exp,l-(i+1));
+strrev(exp1);
+printf("Three address code:\ntemp=%s\n%s=temp\n",exp1,exp2);
+break;
+
+case 2:
+printf("\nEnter the expression with arithmetic operator:");
+scanf("%s",ex);
+strcpy(exp,ex);
+l=strlen(exp);
+exp1[0]='\0';
+
+for(i=0;i<l;i++)
+{
+if(exp[i]==…
