@@ -41,4 +41,63 @@ exp1[0]='\0';
 
 for(i=0;i<l;i++)
 {
-if(exp[i]==…
+if(exp[i]=='+'||exp[i]=='-')
+{
+if(exp[i+2]=='/'||exp[i+2]=='*')
+{
+pm();
+break;
+}
+else
+{
+plus();
+break;
+}
+}
+else if(exp[i]=='/'||exp[i]=='*')
+{
+div();
+break;
+}
+}
+break;
+
+case 3:
+printf("Enter the expression with relational operator");
+scanf("%s%s%s",&id1,&op,&id2);
+if(((strcmp(op,"<")==0)||(strcmp(op,">")==0)||(strcmp(op,"<=")==0)||(strcmp(op,">=")==0)||(strcmp(op,"==")==0)||(strcmp(op,"!=")==0))==0)
+printf("Expression is error");
+else
+{
+printf("\n%d\tif %s%s%s goto %d",addr,id1,op,id2,addr+3);
+addr++;
+printf("\n%d\t T:=0",addr);
+addr++;
+printf("\n%d\t goto %d",addr,addr+2);
+addr++;
+printf("\n%d\t T:=1",addr);
+}
+break;
+case 4:
+exit(0);
+}
+}
+}
+void pm()
+{
+strrev(exp);
+j=l-i-1;
+strncat(exp1,exp,j);
+strrev(exp1);
+printf("Three address code:\ntemp=%s\ntemp1=%c%ctemp\n",exp1,exp[j+1],exp[j]);
+}
+void div()
+{
+strncat(exp1,exp,i+2);
+printf("Three address code:\ntemp=%s\ntemp1=temp%c%c\n",exp1,exp[i+2],exp[i+3]);
+}
+void plus()
+{
+strncat(exp1,exp,i+2);
+printf("Three address code:\ntemp=%s\ntemp1=temp%c%c\n",exp1,exp[i+2],exp[i+3]);
+}
